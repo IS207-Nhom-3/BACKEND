@@ -17,8 +17,6 @@
                         <h1 class="page-header">
                         Welcome to admin
                         </h1>
-                     
-                       
                     </div>  
                 </div>
                 <!-- /.row -->
