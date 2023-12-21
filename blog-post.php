@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <title>Blog Post</title>
 
     <link rel="stylesheet" href="style/general.css">
     <link rel="stylesheet" href="style/blog.css">
+    
 
     <link rel="stylesheet" href="font/themify-icons-font/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
@@ -15,30 +19,25 @@
 </head>
 <body>
 
-    <section id="header">
-        <a href="#"><img src="/img/logo.png" class="logo" alt=""></a>
+    <?php include"./includes/header.php" ?>
 
-        <nav>
-            <div class="box">
-                <input type="text" placeholder="Search...">
-                <a href="#">
-                    <i class="fas fa-search"></i>
-                </a>
-            </div>
-            <input type="checkbox" id="check">
-            <label for="check" class="checkbtn">
-                <i class="fas fa-bars"></i>
-            </label>
-            <ul id="navbar" class="topnav">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <li><a href="cart.html"><i class="ti-shopping-cart"></i></a></li>
-            <li><a href="signin.html"><i class="fa-solid fa-user"></i></a></li>
-        </nav>
-    </section>
+    <div class="well">
+    <h4>Blog Search</h4>
+    <!-- Tạo một form -->
+    <form action="search.php" method="post">
+    <div class="input-group">
+        <input name="search" type="text" class="form-control">
+        <span class="input-group-btn">
+            <button name="submit" class="btn btn-default" type="submit">
+                Search
+        </button>
+        </span>
+    </div>
+    </form><!--Kết thúc Search form -->
+
+    <!-- /.input-group -->
+</div>
+
 
     <section class="blog-post section-header-offset">
         <div class="blog-post-container container">
@@ -53,6 +52,8 @@
             </div>
 
             <div class="container">
+
+
                 <p>
                     Meta's Quest Pro is one of the most highly anticipated pieces of technology to hit the market in the past few years. 
                     The virtual reality industry is highly competitive, with major companies such as Meta, Sony (PlayStation VR) and HTC (Vive) leading the way in terms of market share and innovation. 
@@ -102,6 +103,25 @@
         </div>
     </section>
 
+    <div class="well categories">
+    <!-- Dùng php để gọi loại post từ bảng cơ sở dữ liệu -->
+    <?php
+     $query ="SELECT * FROM categories";
+     $select_categories_sidebar = mysqli_query($connection, $query);
+    ?>
+    <h4>Blog Categories</h4>
+    <div class="row">
+        <div class="col-lg-6">
+        <?php 
+        while ($row = mysqli_fetch_assoc($select_categories_sidebar)){ // duyệt qua từng dòng của bảng
+        $cat_title = $row['cat_title'];
+        $cat_id = $row['cat_id'];
+        echo "<li><a href='category.php?category=$cat_id'>{$cat_title}</a></li>";}//Xuất ra loại post với link là ví dụ category.php?category=1
+        ?>
+        </div> 
+    </div>
+    <!-- /.row -->
+</div>
     <footer class="section-p1 footer">
         <div class="col">
             <img class="logo" src="img/logo.png" alt="">
