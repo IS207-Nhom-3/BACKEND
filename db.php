@@ -10,6 +10,6 @@ $connection = mysqli_connect('localhost','root','','web','3305');
 //  echo "we are connected";
 //} 
 
-
+test
 
 ?>
