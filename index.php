@@ -1,3 +1,10 @@
+<?php 
+session_start();
+include"db.php"; 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +13,7 @@
     <title>Phone Ecommerce</title>
     <link rel="stylesheet" href="style/general.css">
     <link rel="stylesheet" href="style/homepage.css">
+  
 
     <link rel="stylesheet" href="font/themify-icons-font/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
@@ -30,14 +38,28 @@
                 <i class="fas fa-bars"></i>
             </label>
             <ul id="navbar" class="topnav">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="shop.php">Shop</a></li>
+                <li><a href="blog.php">Blog</a></li>
+                <li><a href="contact.php">Contact</a></li>
             </ul>
-            <li><a href="cart.html"><i class="ti-shopping-cart"></i></a></li>
-            <li><a href="signin.html"><i class="fa-solid fa-user"></i></a></li>
-        </nav>
+ <?php if(isset($_SESSION['username'])) { //// Kiểm tra nếu người dùng đã đăng nhập
+    $loggedInUser = $_SESSION['username'];
+}
+    ?>           
+           
+                
+         <!-- Các phần khác của thanh điều hướng -->
+     
+           <li><a href="cart.php"><i class="fa-solid fa-cart-shopping" style="color:#dfebf6;"></i></a></li>
+           <li><a href="login.php"><i class="fa-solid fa-user"></i></a></li>
+           <?php if(isset($loggedInUser)): ?>
+    <div class="user-info">
+        <li style="color:#dfebf6;">Welcome, <?php echo $loggedInUser; ?></li>
+        <li><a style="color:#dfebf6; text-decoration:none;" href="logout.php">Logout</a></li>
+    </div>
+<?php endif; ?>
+                   
     </section>
     
     <section id="hero">
