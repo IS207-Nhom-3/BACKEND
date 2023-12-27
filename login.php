@@ -28,16 +28,19 @@
     $user_id = $row['user_id'];
     $username = $row['username'];
     $user_password = $row['user_password'];
+    $user_role = $row['user_role'];
     }
     if ($result->num_rows > 0) {
    // Đăng nhập thành công
-    $_SESSION['username'] = $username; //lưu tên người đăng nhập vào session
+    $_SESSION['username'] = $username;//lưu tên người đăng nhập vào session
+    $_SESSION['user_role'] = $user_role; //lưu role vào session
     header("Location: index.php?u_id=$user_id");
     exit;
   } else {
    // Đăng nhập không thành công
     header("Location:login.php");
   }
+
    // Đóng kết nối
     $connection->close();
   }
