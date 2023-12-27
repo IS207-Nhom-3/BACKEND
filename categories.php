@@ -1,6 +1,4 @@
 <?php include "./includes/admin_header.php" ?>
-<?php include "./function.php" ?>
-<?php include "../db.php"; ?>
 <body>
 
     <div id="wrapper">
@@ -21,7 +19,11 @@
 
                         <h1 class="page-header">
                             Welcome to admin
-                            <small>DO DAT</small>
+                            <?php
+                    if(isset($_SESSION['username'])){
+                        echo $_SESSION['username'];
+                    }
+                    ?>  
                         </h1>
                         <div class="col-xs-6">
 
